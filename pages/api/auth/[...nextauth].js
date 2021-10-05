@@ -25,4 +25,10 @@ export default NextAuth({
   },
   // SQL or MongoDB database (or leave empty)
   database: process.env.DATABASE_URL,
+  callbacks: {
+    session: async (session, user) => {
+      session.userId = user.sub
+      return Promise.resolve(session)
+    }
+  }
 })
