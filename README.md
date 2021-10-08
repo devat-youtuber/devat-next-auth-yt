@@ -5,7 +5,7 @@
 
 ## Author: Dev AT
 
-## Youtube tutorials: https://youtu.be/v6LoiRHRQzA
+## Youtube tutorials: https://youtu.be/AKfkvA81YAo
 
 ## Setup Project
 ### `npm install` and connect to your mongodb and add info in .env
