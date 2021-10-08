@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
-import { providers, getSession } from 'next-auth/client'
+import { providers, getSession, csrfToken } from 'next-auth/client'
 import Router from 'next/router'
 
-import BtnLogin from '../components/BtnLogin'
+import OAuth from '../components/auth/OAuth'
+import Email from '../components/auth/Email'
 
-const Login = ({providers, session}) => {
+const Login = ({providers, session, csrfToken}) => {
   
   useEffect(() => {
     if(session) return Router.push('/');
@@ -24,18 +25,9 @@ const Login = ({providers, session}) => {
 
         <p className="text-center">Login with NextAuth</p>
 
-        <BtnLogin 
-          provider={providers.google}
-          bgColor='#f2573f'
-        />
-        <BtnLogin 
-          provider={providers.facebook}
-          bgColor='#0404be'
-        />
-        <BtnLogin 
-          provider={providers.github}
-          bgColor='#444'
-        />
+        <OAuth providers={providers} csrfToken={csrfToken} />
+        
+        <Email providers={providers} csrfToken={csrfToken} />
       </div>
     </div>
   )
@@ -44,7 +36,8 @@ const Login = ({providers, session}) => {
 Login.getInitialProps = async (context) => {
   return {
     providers: await providers(context),
-    session: await getSession(context)
+    session: await getSession(context),
+    csrfToken: await csrfToken(context)
   }
 }
 
