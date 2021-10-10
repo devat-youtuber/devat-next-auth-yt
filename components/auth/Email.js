@@ -3,6 +3,7 @@ import BtnLogin from './BtnLogin'
 
 const Email = ({providers, csrfToken}) => {
   const [email, setEmail] = useState('')
+  
   return (
     <BtnLogin 
       provider={providers.email}
@@ -11,8 +12,8 @@ const Email = ({providers, csrfToken}) => {
       options={{email}}
     >
       <div>
-        <label htmlFor="Email address"></label>
-        <input type="text" id="email" name="email"
+        <label htmlFor="email">Email address</label>
+        <input type="email" id="email" name="email"
         className="form-control w-100"
         placeholder="email@example.com" required
         value={email} onChange={e => setEmail(e.target.value)} />
